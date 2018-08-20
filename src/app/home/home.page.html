@@ -7,6 +7,30 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <h1>Forms with ngModel</h1>
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Todo</ion-label>
+      <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
+    </ion-item>
+    <ion-button type="submit" block>Add Todo</ion-button>
+  </form>
+  <hr>
+
+  <h1>Forms with FormBuilder</h1>
+  <form [formGroup]="fbTodo" (ngSubmit)="logFBForm()">
+    <ion-item>
+      <ion-label>Todo</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!fbTodo.valid">Submit</ion-button>
+  </form>
 </ion-content>
